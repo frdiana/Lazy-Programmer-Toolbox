@@ -5,3 +5,7 @@ A commandline set of tools for improve programmer's life 😊
 The toolbox is a global dotnet tool, you can easily install it by typing the following command:
 
 `dotnet tool install -g lazy.prg.toolbox`
+
+## Usage
+
+`tbx -toAzSettings --input {filePath} --output {filePath`
