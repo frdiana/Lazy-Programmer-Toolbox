@@ -7,9 +7,7 @@ A commandline set of tools for improve programmer's life 😊
 ## Installation
 The toolbox is a global dotnet tool, you can easily install it by typing the following command:
 
-`dotnet tool install --global LazyProgrammerToolbox --version 1.0.0`
-
-Soon the --version parameters will no longer be necessary.
+`dotnet tool install --global LazyProgrammerToolbox `
 
 ## Usage
 
