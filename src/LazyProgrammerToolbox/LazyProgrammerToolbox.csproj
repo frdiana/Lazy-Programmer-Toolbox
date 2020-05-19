@@ -6,6 +6,10 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>tbx</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
+    <PackageId>LazyProgrammerTbx</PackageId>
+    <Authors>LazyProgrammerTbx</Authors>
+    <Company>LazyProgrammerTbx</Company>
+    <Product>LazyProgrammerTbx</Product>
   </PropertyGroup>
 
   <ItemGroup>
