@@ -3,8 +3,10 @@ using LazyProgrammerToolbox.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace LazyProgrammerToolbox.Converters
 {
@@ -28,9 +30,12 @@ namespace LazyProgrammerToolbox.Converters
                 return;
             }
             
-            using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(input), JsonHelper.GetDefaultOptions()))
+            using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(input), JsonHelper.GetDefaultJsonDocumentOptions()))
             {
                 ConvertJsonObject(document.RootElement, parent:null,arrayIndex:null);
+                
+                string outputFileSerialized = JsonSerializer.Serialize(lst.OrderBy(x => x.Name), JsonHelper.GetDefaultJsonSerializerOptions());
+                File.WriteAllText(output, outputFileSerialized);
             }
          }
 
@@ -76,6 +81,11 @@ namespace LazyProgrammerToolbox.Converters
             }
         }
 
+        internal static void AppSettingsToAzKeyVault(string arg1, string arg2)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Recursively scan json array elements and add to the list
         /// </summary>
@@ -98,7 +108,7 @@ namespace LazyProgrammerToolbox.Converters
                 {
                     lst.Add(new AzureSettingsJsonFormatItem()
                     {
-                        Name = $"{ parent }",
+                        Name = $"{ parent }:{index}",
                         SlotSetting = false,
                         Value = jElement.GetString()
                     });
@@ -108,7 +118,7 @@ namespace LazyProgrammerToolbox.Converters
                 {
                     lst.Add(new AzureSettingsJsonFormatItem()
                     {
-                        Name = $"{ parent }",
+                        Name = $"{ parent }:{index}",
                         SlotSetting = false,
                         Value = jElement.GetInt32().ToString()
                     });
@@ -118,7 +128,7 @@ namespace LazyProgrammerToolbox.Converters
                 {
                     lst.Add(new AzureSettingsJsonFormatItem()
                     {
-                        Name = $"{ parent }",
+                        Name = $"{ parent }:{index}",
                         SlotSetting = false,
                         Value = jElement.GetBoolean().ToString()
                     });

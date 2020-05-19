@@ -41,5 +41,15 @@ namespace LazyProgrammerToolbox
             rootCommand.Add(appSettingsToAzSettingsCommand);
             return rootCommand;
         }
+
+        public static RootCommand AddAppSettingsToAzKeyVaultCommand(this RootCommand rootCommand)
+        {
+            var appSettingsToAzSettingsCommand = new Command("appSettingsToAzKeyVault");
+            appSettingsToAzSettingsCommand.Add(new Option<string>("--input"));
+            appSettingsToAzSettingsCommand.Add(new Option<string>("--output"));
+            appSettingsToAzSettingsCommand.Handler = CommandHandler.Create<string, string>(AppSettingsConverter.AppSettingsToAzKeyVault);
+            rootCommand.Add(appSettingsToAzSettingsCommand);
+            return rootCommand;
+        }
     }
 }

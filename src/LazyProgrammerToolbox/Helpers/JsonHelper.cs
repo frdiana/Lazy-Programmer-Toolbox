@@ -18,7 +18,7 @@ namespace LazyProgrammerToolbox.Helpers
         {
             try
             {
-                JsonDocument document = JsonDocument.Parse(json, GetDefaultOptions());
+                JsonDocument document = JsonDocument.Parse(json, GetDefaultJsonDocumentOptions());
                 return true;
             }
             catch (Exception)
@@ -31,12 +31,22 @@ namespace LazyProgrammerToolbox.Helpers
         /// Returns default options for JsonDocumentOptions object
         /// </summary>
         /// <returns></returns>
-        public static JsonDocumentOptions GetDefaultOptions()
+        public static JsonDocumentOptions GetDefaultJsonDocumentOptions()
         {
             var options = new JsonDocumentOptions
             {
                 AllowTrailingCommas = true,
                 CommentHandling = JsonCommentHandling.Skip
+            };
+            return options;
+        }
+
+        public static JsonSerializerOptions GetDefaultJsonSerializerOptions()
+        {
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                AllowTrailingCommas = true
             };
             return options;
         }
